@@ -17,6 +17,10 @@ function App() {
     console.log("data", data);
     setTodos(data);
   };
+  const onSubmitHandler = async () => {
+    axios.post('http://localhost:4000/todos', inputValue);
+    setTodos([...todos, inputValue]);
+  };
 
   useEffect(() => {
     // 최초로 마운트 될 때, db로부터 값을 가져올 것이다.
@@ -32,7 +36,9 @@ function App() {
         e.preventDefault(); // onsubmit은 자동으로 새로고침 하므로 프리밴트 디폴트로 막아줌.
           
       // 버튼 클릭 시, inout에 들어있는 값(state)를 이용하여 DB에 저장(post요청)
-      }}
+      onSubmitHandler();
+    
+    }}
           >
         <input type="text"
         value={inputValue.title}

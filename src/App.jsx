@@ -20,6 +20,7 @@ function App() {
 
   return (
     <div>
+      {/* ?로 옵셔널 체이닝 */}
       {todos?.map((item) => {
         return ( 
           // 맵 함수 돌아갈 땐, 항상 최상위 태그에 key라는 프로퍼티가 필요함. 

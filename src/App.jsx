@@ -26,7 +26,9 @@ function App() {
   // 추가 함수
   const onSubmitHandler = async () => {
     axios.post("http://localhost:4000/todos", inputValue);
-    setTodos([...todos, inputValue]);
+    //setTodos([...todos, inputValue]); 
+    //디비에는 저장이 되는데 state에는 11이라는 값을 알 수 없기 때문에 자동으로 갱신되지 않는다.
+    fetchTodos(); // 즉, 다시 디비를 읽어오는 방식이 더 적합하다.
   };
 
   // 삭제 함수

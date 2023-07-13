@@ -2,27 +2,15 @@
   "todos": [
     {
       "id": 1,
-      "title": "react"
+      "title": "밥 딜런"
     },
     {
       "id": 2,
-      "title": "node"
+      "title": "데이빗 보위"
     },
     {
       "id": 3,
-      "title": "spring"
-    },
-    {
-      "title": "sdfa",
-      "id": 4
-    },
-    {
-      "title": "asdjkafj",
-      "id": 5
-    },
-    {
-      "title": "af",
-      "id": 6
+      "title": "칼 세이건"
     }
-  ]
+]
 }

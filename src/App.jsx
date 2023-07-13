@@ -28,7 +28,12 @@ function App() {
       <div>
         
         {/* 인풋 영역 */}
-      <form>
+      <form onSubmit={(e) => {
+        e.preventDefault(); // onsubmit은 자동으로 새로고침 하므로 프리밴트 디폴트로 막아줌.
+          
+      // 버튼 클릭 시, inout에 들어있는 값(state)를 이용하여 DB에 저장(post요청)
+      }}
+          >
         <input type="text"
         value={inputValue.title}
         onChange={(e)=>{

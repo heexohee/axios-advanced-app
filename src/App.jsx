@@ -14,11 +14,13 @@ function App() {
   const [targetId, setTargetId] = useState("");
   const [contents, setContents] = useState("");
 
+  // 비동기 함수 : 서버에 todos 요청
   // 조회 함수
   const fetchTodos = async () => {
     // await가 없으면 응답을 받기전에 콘솔로그레 response가 찍혀서 pending 으로 뜸.
     // 그래서 await 넣어준겨(async안에서 쓰면 response를 할당받을 때까지 기다렸다가 밑에 줄이 실행됨.)
-    const { data } = await axios.get("http://localhost:4000/todos");
+    // const { data } = await axios.get("http://localhost:4000/todos");
+    const { data } = await axios.get(`${process.env.REACT_APP_SERVER_URL}/todos`);
     console.log("data", data);
     setTodos(data);
   };

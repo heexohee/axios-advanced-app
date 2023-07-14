@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import axios from "axios";
+//import axios from "axios";
+import api from './axios/api';
 
 function App() {
   const [todos, setTodos] = useState(null);
@@ -20,22 +21,22 @@ function App() {
     // await가 없으면 응답을 받기전에 콘솔로그레 response가 찍혀서 pending 으로 뜸.
     // 그래서 await 넣어준겨(async안에서 쓰면 response를 할당받을 때까지 기다렸다가 밑에 줄이 실행됨.)
     // const { data } = await axios.get("http://localhost:4000/todos");
-    const { data } = await axios.get(`${process.env.REACT_APP_SERVER_URL}/todos`);
+    const { data } = await api.get(`/todos`);
     console.log("data", data);
     setTodos(data);
   };
 
   // 추가 함수
   const onSubmitHandler = async () => {
-    axios.post("http://localhost:4000/todos", inputValue);
+    api.post((`/todos`), inputValue);
     //setTodos([...todos, inputValue]); 
     //디비에는 저장이 되는데 state에는 11이라는 값을 알 수 없기 때문에 자동으로 갱신되지 않는다.
     fetchTodos(); // 즉, 다시 디비를 읽어오는 방식이 더 적합하다.
   };
 
   // 삭제 함수
-  const onDeleteButtonClickHandler = async (id) => {
-    axios.delete(`http://localhost:4000/todos/${id}`);
+  const onClickDeleteButtonHandler = async (id) => {
+    api.delete(`/todos/${id}`);
     setTodos(
       todos.filter((item) => {
         return item.id !== id;
@@ -45,7 +46,7 @@ function App() {
 
    // 데이터 수정 함수
    const onUpdateButtonClickHandler = async () => {
-    axios.patch(`http://localhost:4000/todos/${targetId}`,{
+    api.patch(`/todos/${targetId}`,{
       title: contents,
    });
       setTodos(
@@ -128,8 +129,8 @@ function App() {
               {item.id} : {item.title}
               {/* 한번 한수로 감싸줘야 함수 호출하고 렌더링하지 않는다. 바로 호출하지 말고 감싸주기! */}
               &nbsp;
-              <button onClick={() => onDeleteButtonClickHandler(item.id)}>
-                🥹
+              <button onClick={() => onClickDeleteButtonHandler(item.id)}>
+                삭제
               </button>
             </div>
           );
